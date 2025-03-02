@@ -1,18 +1,22 @@
 import cv2
 
-def list_connected_cameras(max_cameras=10):
-    available_cameras = []
-    
-    for i in range(max_cameras):
-        capture = cv2.VideoCapture(i)
-        if capture.isOpened():
-            available_cameras.append(i)
-            capture.release()
+# Try different camera indices and backends
+cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)  # Use 0, 1, or try CAP_V4L2 on Linux
 
-    return available_cameras
+if not cap.isOpened():
+    print("Error: External camera not found!")
+    exit()
 
-cameras = list_connected_cameras()
-if cameras:
-    print(f"Available cameras: {cameras}")
-else:
-    print("No cameras found.")
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Error: Failed to grab frame")
+        break
+
+    cv2.imshow("Live Video", frame)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
