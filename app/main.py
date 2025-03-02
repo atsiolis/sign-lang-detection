@@ -25,7 +25,7 @@ if not capture.isOpened():
 frame_counter = 0
 
 def draw_landmarks_on_image(image, detection_result):
-    """Draws hand landmarks if detected."""
+    #Draws hand landmarks if detected.
     if not detection_result.multi_hand_landmarks:
         return image  # Return original if no hands detected
 
