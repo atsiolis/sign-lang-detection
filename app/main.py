@@ -15,8 +15,8 @@ if not capture.isOpened():
     capture = cv2.VideoCapture(0)
 
 # Reduce resolution for better performance
-capture.set(cv2.CAP_PROP_FRAME_WIDTH, 500)
-capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 500)
+capture.set(cv2.CAP_PROP_FRAME_WIDTH, 200)
+capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 200)
 
 if not capture.isOpened():
     print("Error: Could not open camera.")

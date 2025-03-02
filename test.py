@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 
 # Load the pre-trained ASL model
-model = tf.keras.models.load_model("asl_model.h5")  # Replace with your model path
+model = tf.keras.models.load_model("./model/trained_model.h5")  # Replace with your model path
 
 # Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
@@ -13,10 +13,12 @@ mp_drawing = mp.solutions.drawing_utils
 
 # Open Camera
 cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 500)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 500)
 
 # Define ASL labels (modify based on your model)
 asl_labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
-              "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+              "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Delete", "Space"]
 
 while cap.isOpened():
     ret, frame = cap.read()
